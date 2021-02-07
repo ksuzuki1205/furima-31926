@@ -2,16 +2,14 @@
 ## users テーブル
 | Column           | Type         | Options                        |
 | ---------------- | ------------ | ------------------------------ |
-| NickName         | string       | null:false                     |
+| nickname         | string       | null:false                     |
 | email            | string       | null:false                     |
 | password         | string       | null:false                     |
-| LastName         | string       | null:false                     |
-| FirstName        | string       | null:false                     |
-| LastName_kana    | string       | null:false                     |
-| FirstName_kana   | string       | null:false                     |
-| birthday_year    | integer      | null:false                     |
-| birthday_month   | integer      | null:false                     |
-| birthday_date    | integer      | null:false                     |
+| last_name        | string       | null:false                     |
+| first_name       | string       | null:false                     |
+| last_name_kana   | string       | null:false                     |
+| first_name_kana  | string       | null:false                     |
+| birthday         | date         | null:false                     |
 
 ### Association
 
@@ -20,17 +18,17 @@
 
 
 ## items テーブル
-| Column           | Type         | Options                        |
-| ---------------- | ------------ | ------------------------------ |
-| title            | string       | null:false                     |
-| image            |              |                                |
-| explanation      | text         | null:false                     |
-| category         | string       | null:false                     |
-| condition        | string       | null:false                     |
-| shipping_charge  | integer      | null:false                     |
-| day_to_ship      | integer      | null:false                     |
-| price            | integer      | null:false                     |
-| user             | references   | null: false, foreign_key: true |
+| Column              | Type         | Options                        |
+| ------------------- | ------------ | ------------------------------ |
+| title               | string       | null:false                     |
+| image               |              |                                |
+| explanation         | text         | null:false                     |
+| category_id         | integer      | null:false                     |
+| condition_id        | integer      | null:false                     |
+| shipping_charge_id  | integer      | null:false                     |
+| day_to_ship_id      | integer      | null:false                     |
+| price               | integer      | null:false                     |
+| user                | references   | null: false, foreign_key: true |
 
 ### Association
 
@@ -39,18 +37,14 @@
 
 
 ## purchases テーブル
-| Column           | Type         | Options                        |
-| ---------------- | ------------ | ------------------------------ |
-| CardNumber       | integer      | null:false                     |
-| ExpMonth         | integer      | null:false                     |
-| ExpYear          | integer      | null:false                     |
-| SecurityCode     | integer      | null:false                     |
-| PostalCode       | integer      | null:false                     |
-| Region           | string       | null:false                     |
-| CITY             | string       | null:false                     |
-| BlockNumber      | string       | null:false                     |
-| BuildingName     | string       | null:false                     |
-| Phone            | integer      | null:false                     |
+| Column            | Type         | Options                        |
+| ----------------- | ------------ | ------------------------------ |
+| postal_code       | integer      | null:false                     |
+| region            | string       | null:false                     |
+| city              | string       | null:false                     |
+| block_number      | string       | null:false                     |
+| building_name     | string       | null:false                     |
+| phone             | integer      | null:false                     |
 
 
 ### Association
@@ -58,10 +52,18 @@
 - belongs_to :user
 - belongs_to :item
 
-
-<!-- カラムの型	説明	用途
-integer	数値	金額、回数など
-string	文字(短文)	ユーザー名、メールアドレスなど
-text	文字(長文)	投稿文、説明文など
-boolean	真か偽か	はい・いいえの選択、合格・不合格のフラグなど
-datetime	日付と時刻	作成日時、更新日時など -->
+<!-- 
+型	意味　
+string	文字列(1〜255文字)
+text	長い文字列(1〜4294967296文字)
+integer	整数（4バイト）
+bigint	整数(8バイト)
+float	浮動小数
+decimal	精度の高い小数
+numeric	数値
+datetime	日時
+timestamp	タイムスタンプ
+time	時間
+date	日付
+binary	バイナリデータ
+boolean	真偽値型 -->
