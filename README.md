@@ -50,13 +50,6 @@
 | purchase_history  | references   | null:false, foreign_key: true  |
 
 
-
-### Association
-
-- belongs_to :user
-- belongs_to :item
-
-
 ## purchase_histories テーブル
 | Column               | Type         | Options                        |
 | -------------------- | ------------ | ------------------------------ |
@@ -67,7 +60,8 @@
 ### Association
 
 - has_one :purchase
-
+- belongs_to :user
+- belongs_to :item
 
 <!-- 
 型	意味
