@@ -28,7 +28,7 @@
 | condition_id        | integer      | null:false                     |
 | shipping_charge_id  | integer      | null:false                     |
 | ship_from_area_id   | string       | null:false                     | 
-| day_to_ship_id      | integer      | null:false                     |
+| region_id           | integer      | null:false                     |
 | price               | integer      | null:false                     |
 | user                | references   | null:false, foreign_key: true  |
 
@@ -42,11 +42,13 @@
 | Column            | Type         | Options                        |
 | ----------------- | ------------ | ------------------------------ |
 | postal_code       | string       | null:false                     |
-| region_id         | string       | null:false                     |
+| region_id         | integer      | null:false                     |
 | city              | string       | null:false                     |
 | block_number      | string       | null:false                     |
 | building_name     | string       |                                |
 | phone             | string       | null:false                     |
+| purchase_history  | references   | null:false, foreign_key: true  |
+
 
 
 ### Association
@@ -66,7 +68,7 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_many :purchases
+- has_one :purchase
 
 
 <!-- 
