@@ -60,6 +60,14 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Birthday can't be blank")
     end
 
+    it 'passwordが5文字以下では登録できない' do
+      @user.password = '00000'
+      @user.password_confirmation = '00000'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
+    end
+
+
 
 
     # it 'passwordが空では登録できない' do
@@ -81,7 +89,7 @@ end
 # メールアドレスが一意性であること
 # メールアドレスは、@を含む必要があること
 # パスワードが必須であること =>Done
-# パスワードは、6文字以上での入力が必須であること
+# パスワードは、6文字以上での入力が必須であること => Done
 # パスワードは、半角英数字混合での入力が必須であること
 # パスワードは、確認用を含めて2回入力すること
 # パスワードとパスワード（確認用）、値の一致が必須であること
