@@ -1,5 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'ユーザー新規登録' do
+    # ユーザー新規登録についてのテストコードを記述します  
+    it 'nicknameが空では登録できない' do
+      # nicknameが空では登録できないテストコードを記述します
+      user = User.new(nickname: '', email: 'test@example', password: '000000', password_confirmation: '000000', last_name: '山田', first_name: '太郎', last_name_kana: 'ヤマダ', first_name_kana: 'タロウ', birthday: '1931-01-01')
+      user.valid?
+      expect(user.errors.full_messages).to include("Nickname can't be blank")
+    end
+    it 'emailが空では登録できない' do
+      # emailが空では登録できないテストコードを記述します
+    end
+  end
 end
