@@ -6,15 +6,11 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
-    # it 'nicknameとemail、passwordとpassword_confirmationが存在すれば登録できる' do
-    # end
-    # it 'nicknameが6文字以下であれば登録できる' do
-    # end
-    # it 'passwordとpassword_confirmationが6文字以上であれば登録できる' do
-    # end
+    
     it 'nicknameが空では登録できない' do
       @user.nickname = ''
       @user.valid?
+      binding.pry
       expect(@user.errors.full_messages).to include("Nickname can't be blank")
     end
 
@@ -92,7 +88,7 @@ end
 
 # ニックネームが必須であること =>Done
 # メールアドレスが必須であること =>Done
-# メールアドレスが一意性であること
+# メールアドレスが一意性であること =>Done
 # メールアドレスは、@を含む必要があること
 # パスワードが必須であること =>Done
 # パスワードは、6文字以上での入力が必須であること => Done
