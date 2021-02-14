@@ -117,19 +117,26 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Email is invalid")
     end
 
-    # it 'パスワードは、半角英数字混合でないと登録できない' do
-    #   @user.password = '1234567'
-    #   @user.password_confirmation = '1234567'
-    #   @user.valid?
-    #   expect(@user.errors.full_messages).to include("Email is invalid")
-    # end
-
-
     it 'パスワードとパスワード（確認用）の値の一致がしないと登録できない' do
       @user.password = 'aaa111'
       @user.password_confirmation = 'bbb222'
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+    end
+
+    it 'パスワードは、半角数字だけでは登録できない' do
+      @user.password = '1234567'
+      @user.password_confirmation = '1234567'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+    end
+
+
+    it 'パスワードは、半角英字だけでは登録できない' do
+      @user.password = 'abcdefg'
+      @user.password_confirmation = 'abcdefg'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
     end
 
     # it 'passwordが空では登録できない' do
@@ -152,7 +159,7 @@ end
 # メールアドレスは、@を含む必要があること =>Done
 # パスワードが必須であること =>Done
 # パスワードは、6文字以上での入力が必須であること => Done
-# パスワードは、半角英数字混合での入力が必須であること
+# パスワードは、半角英数字混合での入力が必須であること=> Done
 # パスワードは、確認用を含めて2回入力すること => Done
 # パスワードとパスワード（確認用）、値の一致が必須であること => Done
 # 新規登録/本人情報確認
