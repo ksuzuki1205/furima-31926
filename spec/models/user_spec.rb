@@ -111,15 +111,10 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("First name kana 全角カナ文字を使用してください")
     end
 
-
-
-
-    it '重複したemailが存在する場合登録できない' do
-      @user.save
-      another_user = FactoryBot.build(:user)
-      another_user.email = @user.email
-      another_user.valid?
-      expect(another_user.errors.full_messages).to include('Email has already been taken')
+    it 'メールアドレスは、@を含まないと登録できない' do
+      @user.email = 'testgmail.com'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email is invalid")
     end
 
 
@@ -141,7 +136,7 @@ end
 # ニックネームが必須であること =>Done
 # メールアドレスが必須であること =>Done
 # メールアドレスが一意性であること =>Done
-# メールアドレスは、@を含む必要があること
+# メールアドレスは、@を含む必要があること =>Done
 # パスワードが必須であること =>Done
 # パスワードは、6文字以上での入力が必須であること => Done
 # パスワードは、半角英数字混合での入力が必須であること
@@ -151,5 +146,5 @@ end
 # ユーザー本名は、名字と名前がそれぞれ必須であること  =>Done
 # ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること =>Done
 # ユーザー本名のフリガナは、名字と名前でそれぞれ必須であること =>Done
-# ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること
+# ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること=>Done
 # 生年月日が必須であること =>Done
