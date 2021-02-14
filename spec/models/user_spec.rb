@@ -74,6 +74,46 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Last name 全角文字を使用してください")
     end
 
+    it 'ユーザー苗字カナは、半角では登録できない' do
+      @user.last_name_kana = 'abcd'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name kana 全角カナ文字を使用してください")
+    end
+
+    it 'ユーザー名前カナは、半角では登録できない' do
+      @user.first_name_kana = 'abcd'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name kana 全角カナ文字を使用してください")
+    end
+
+    it 'ユーザー苗字カナは、ひらがなでは登録できない' do
+      @user.last_name_kana = 'あいうえお'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name kana 全角カナ文字を使用してください")
+    end
+
+    it 'ユーザー名前カナは、ひらがなでは登録できない' do
+      @user.first_name_kana = 'あいうえお'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name kana 全角カナ文字を使用してください")
+    end
+
+
+    it 'ユーザー苗字カナは、漢字では登録できない' do
+      @user.last_name_kana = '花鳥風月'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name kana 全角カナ文字を使用してください")
+    end
+
+    it 'ユーザー名前カナは、漢字では登録できない' do
+      @user.first_name_kana = '花鳥風月'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name kana 全角カナ文字を使用してください")
+    end
+
+
+
+
     it '重複したemailが存在する場合登録できない' do
       @user.save
       another_user = FactoryBot.build(:user)
