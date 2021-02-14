@@ -10,7 +10,6 @@ RSpec.describe User, type: :model do
     it 'nicknameが空では登録できない' do
       @user.nickname = ''
       @user.valid?
-      binding.pry
       expect(@user.errors.full_messages).to include("Nickname can't be blank")
     end
 
@@ -63,6 +62,18 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
 
+    it 'ユーザー名前は、半角では登録できない' do
+      @user.first_name = 'abcd'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name 全角文字を使用してください")
+    end
+
+    it 'ユーザー苗字は、半角では登録できない' do
+      @user.last_name = 'abcd'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name 全角文字を使用してください")
+    end
+
     it '重複したemailが存在する場合登録できない' do
       @user.save
       another_user = FactoryBot.build(:user)
@@ -70,6 +81,7 @@ RSpec.describe User, type: :model do
       another_user.valid?
       expect(another_user.errors.full_messages).to include('Email has already been taken')
     end
+
 
 
     # it 'passwordが空では登録できない' do
@@ -97,7 +109,7 @@ end
 # パスワードとパスワード（確認用）、値の一致が必須であること
 # 新規登録/本人情報確認
 # ユーザー本名は、名字と名前がそれぞれ必須であること  =>Done
-# ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること 
+# ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること =>Done
 # ユーザー本名のフリガナは、名字と名前でそれぞれ必須であること =>Done
 # ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること
 # 生年月日が必須であること =>Done
