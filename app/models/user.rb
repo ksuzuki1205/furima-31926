@@ -22,6 +22,10 @@ class User < ApplicationRecord
     validates :last_name
   end
 
+  
+
+
+
 
 end
 
