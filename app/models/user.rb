@@ -21,10 +21,6 @@ class User < ApplicationRecord
     validates :last_name
   end
 
-
   VALID_PASSWORD_REGEX = /([0-9].*[a-zA-Z]|[a-zA-Z].*[0-9])/
   validates :password, format: { with: VALID_PASSWORD_REGEX }
-
-
 end
-
