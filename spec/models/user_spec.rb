@@ -135,32 +135,5 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include('Password is invalid')
     end
-
-    # it 'passwordが空では登録できない' do
-    # end
-    # it 'passwordが存在してもpassword_confirmationが空では登録できない' do
-    # end
-    # it 'nicknameが7文字以上では登録できない' do
-    # end
-    # it '重複したemailが存在する場合登録できない' do
-    # end
-    # it 'passwordが5文字以下では登録できない' do
-    # end
   end
 end
-
-# ニックネームが必須であること =>Done
-# メールアドレスが必須であること =>Done
-# メールアドレスが一意性であること =>Done
-# メールアドレスは、@を含む必要があること =>Done
-# パスワードが必須であること =>Done
-# パスワードは、6文字以上での入力が必須であること => Done
-# パスワードは、半角英数字混合での入力が必須であること=> Done
-# パスワードは、確認用を含めて2回入力すること => Done
-# パスワードとパスワード（確認用）、値の一致が必須であること => Done
-# 新規登録/本人情報確認
-# ユーザー本名は、名字と名前がそれぞれ必須であること  =>Done
-# ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること =>Done
-# ユーザー本名のフリガナは、名字と名前でそれぞれ必須であること =>Done
-# ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること=>Done
-# 生年月日が必須であること =>Done
