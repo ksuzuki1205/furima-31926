@@ -29,6 +29,7 @@
 | shipping_charge_id  | integer      | null:false                     |
 | ship_from_area_id   | integer      | null:false                     | 
 | region_id           | integer      | null:false                     |
+| delivery_schedule   | integer      | null:false                     |
 | price               | integer      | null:false                     |
 | user                | references   | null:false, foreign_key: true  |
 
