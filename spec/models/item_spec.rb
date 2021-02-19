@@ -37,6 +37,13 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Shipping charge must be other than 1")
       end
 
+      it '発送元の地域の情報がないと登録できない' do
+        @item.region_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Region must be other than 1")
+      end
+
+
       #   it 'emailが空では登録できない' do
     #     @user.email = ''
     #     @user.valid?
