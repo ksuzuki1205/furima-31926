@@ -19,7 +19,14 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Explanation can't be blank")
       end
 
-    #   it 'emailが空では登録できない' do
+      it 'カテゴリーの情報がないと登録できない' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
+
+
+      #   it 'emailが空では登録できない' do
     #     @user.email = ''
     #     @user.valid?
     #     expect(@user.errors.full_messages).to include("Email can't be blank")
