@@ -11,6 +11,7 @@ class Item < ApplicationRecord
   #空の投稿を保存できないようにする
   validates :title, presence: true
   validates :explanation, presence: true
+  validates :price, presence: true
 
   
   #ジャンルの選択が「--」の時は保存できないようにする
