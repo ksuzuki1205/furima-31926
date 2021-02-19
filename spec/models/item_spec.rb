@@ -31,6 +31,11 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Condition must be other than 1")
       end
 
+      it '配送料の負担の情報がないと登録できない' do
+        @item.shipping_charge_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping charge must be other than 1")
+      end
 
       #   it 'emailが空では登録できない' do
     #     @user.email = ''
