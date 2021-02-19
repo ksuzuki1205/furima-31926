@@ -43,6 +43,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Region must be other than 1")
       end
 
+      it '発送までの日数の情報がないと登録できない' do
+        @item.delivery_schedule_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery schedule must be other than 1")
+      end
+      
 
       #   it 'emailが空では登録できない' do
     #     @user.email = ''
