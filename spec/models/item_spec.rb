@@ -10,15 +10,13 @@ RSpec.describe Item, type: :model do
       it 'titleが空では登録できない' do
         @item.title = ''
         @item.valid?
-        binding.pry
         expect(@item.errors.full_messages).to include("Title can't be blank")
       end
 
-      it 'eが空では登録できない' do
-        @item.title = ''
+      it '商品の説明が空では登録できない' do
+        @item.explanation = ''
         @item.valid?
-        binding.pry
-        expect(@item.errors.full_messages).to include("Title can't be blank")
+        expect(@item.errors.full_messages).to include("Explanation can't be blank")
       end
 
     #   it 'emailが空では登録できない' do
