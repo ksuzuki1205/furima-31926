@@ -25,6 +25,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
 
+      it '商品状態の情報がないと登録できない' do
+        @item.condition_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Condition must be other than 1")
+      end
+
 
       #   it 'emailが空では登録できない' do
     #     @user.email = ''
