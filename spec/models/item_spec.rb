@@ -60,7 +60,14 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
-   end
+      
+      it '価格は全角では登録できない' do
+        @item.price = '１２３４５'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price 半角数字を使用してください")
+      end
+
+    end
 
    context '商品出品ができる時' do
       it '入力内容に不備がなければ登録できる' do

@@ -12,9 +12,12 @@ class Item < ApplicationRecord
   validates :title, presence: true
   validates :explanation, presence: true
   validates :image, presence: true
-  validates :price, presence: true
 
-  
+  with_options presence: true, numericality: { with: /\A[0-9]+\z/, message: '半角数字を使用してください' } do
+    validates :price
+  end
+
+
   #ジャンルの選択が「--」の時は保存できないようにする
   with_options presence: true, numericality: { other_than: 1 }  do
     validates :category_id
