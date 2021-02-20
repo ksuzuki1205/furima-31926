@@ -9,7 +9,7 @@ RSpec.describe 'ユーザーログイン機能', type: :system do
   it 'ログイン状態のユーザーが、商品出品ページへ遷移できること' do
     @user = FactoryBot.create(:user)
 
-    visit  new_user_session_path
+    visit new_user_session_path
     expect(current_path).to eq(new_user_session_path)
 
     fill_in 'email', with: @user.email
@@ -20,6 +20,5 @@ RSpec.describe 'ユーザーログイン機能', type: :system do
 
     visit new_item_path
     expect(current_path).to eq(new_item_path)
-
   end
 end
