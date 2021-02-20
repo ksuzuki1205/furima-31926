@@ -54,7 +54,13 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-    end
+      
+      it '画像が空では登録できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
+   end
 
    context '商品出品ができる時' do
       it '入力内容に不備がなければ登録できる' do
