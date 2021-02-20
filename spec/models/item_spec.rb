@@ -64,8 +64,23 @@ RSpec.describe Item, type: :model do
       it '価格は全角では登録できない' do
         @item.price = '１２３４５'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price 半角数字を使用してください")
+        expect(@item.errors.full_messages).to include("Price は¥300~¥9,999,999の範囲で半角数字を使用してください")
       end
+
+      it '価格は¥299以下では登録できない' do
+        @item.price = Random.rand(-9999999999999999999999 .. 299)
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price は¥300~¥9,999,999の範囲で半角数字を使用してください")
+      end
+
+      it '価格は¥9,999,999以上では登録できない' do
+        @item.price = Random.rand(10000000 .. 99999999999999999999999)
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price は¥300~¥9,999,999の範囲で半角数字を使用してください")
+      end
+
+
+
 
     end
 

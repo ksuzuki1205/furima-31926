@@ -8,7 +8,7 @@ FactoryBot.define do
     shipping_charge_id     { 2 }
     region_id              { 2 }
     delivery_schedule_id   { 2 }
-    price                  { 20000 }                   
+    price                  { Random.rand(300 .. 9999999)}                   
     user
     after(:build) do |item|
       item.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')

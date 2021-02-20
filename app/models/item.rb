@@ -13,7 +13,7 @@ class Item < ApplicationRecord
   validates :explanation, presence: true
   validates :image, presence: true
 
-  with_options presence: true, numericality: { with: /\A[0-9]+\z/, message: '半角数字を使用してください' } do
+  with_options presence: true, numericality: { with: /\A[0-9]+\z/, :greater_than_or_equal_to => 300, :less_than_or_equal_to => 9999999, message: 'は¥300~¥9,999,999の範囲で半角数字を使用してください' } do
     validates :price
   end
 
