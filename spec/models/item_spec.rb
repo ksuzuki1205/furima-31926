@@ -55,7 +55,11 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
-
+   context '商品登録ができる時' do
+      it '入力内容に不備がなければ登録できる' do
+        expect(@item).to be_valid
+      end
+    end
 
       #   it 'emailが空では登録できない' do
     #     @user.email = ''

@@ -9,5 +9,6 @@ FactoryBot.define do
     region_id              { 2 }
     delivery_schedule_id   { 2 }
     price                  { 20000 }
+    user
   end
 end
