@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :item do
-    # image                  { 'あああああ'}
     title                  { 'あああああ' }
     explanation            { 'アイウエオ' }
     category_id            { Random.rand(2..11) }
