@@ -9,9 +9,12 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   # 空の投稿を保存できないようにする
-  validates :title, presence: true
-  validates :explanation, presence: true
-  validates :image, presence: true
+  
+  with_options presence: true do
+    validates :title
+    validates :explanation
+    validates :image
+  end
 
   with_options presence: true,
                numericality: { with: /\A[0-9]+\z/, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999,
