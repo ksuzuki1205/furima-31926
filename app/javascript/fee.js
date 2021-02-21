@@ -4,8 +4,6 @@ function fee (){
     const salesFee  = document.getElementById("add-tax-price");
     const salesProfit  = document.getElementById("profit");
     salesFee.innerHTML = Math.floor(itemPrice.value * 0.1).toLocaleString();
-    // console.log(itemPrice.value)
-    // console.log(salesFee.value)
     salesProfit.innerHTML = (itemPrice.value - Math.floor(itemPrice.value * 0.1)).toLocaleString();
   });
 }
