@@ -23,18 +23,6 @@
         <%= @item.shipping_charge.name %>
       </span>
     </div>
-  <% else%>
-    <div class="item-img-content">
-      <%= image_tag "item-sample.png" ,class:"item-box-img" %>
-    </div>
-    <div class="item-price-box">
-      <span class="item-price">
-        ¥ 999,999,999
-      </span>
-      <span class="item-postage">
-        <%= "着払い（購入者負担）" %>
-      </span>
-    </div>
   <% end%>
 
   <% if user_signed_in? && current_user.id == @item.user_id %>
