@@ -7,7 +7,6 @@ class ItemsController < ApplicationController
 
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def new
@@ -24,12 +23,10 @@ class ItemsController < ApplicationController
   end
   
   def edit
-    @item = Item.find(params[:id])
     redirect_to action: :index  
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
       render :show
     else
@@ -42,5 +39,9 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:title, :explanation, :category_id, :condition_id, :shipping_charge_id, :region_id, :price,
                                  :delivery_schedule_id, :image).merge(user_id: current_user.id)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
