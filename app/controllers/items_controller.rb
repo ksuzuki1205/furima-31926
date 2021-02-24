@@ -22,10 +22,10 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-
-
+  
   def edit
     @item = Item.find(params[:id])
+    redirect_to action: :index  
   end
 
   def update
