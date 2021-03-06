@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :region
   belongs_to :delivery_schedule
   has_one_attached :image
+  has_one :order_history
 
   # 空の投稿を保存できないようにする
 
