@@ -1,14 +1,18 @@
 class OrdersController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
+    @order = Order.new
   end
 
+
+
   def create
+    @item = Item.find(params[:item_id])
     @order = Order.new(order_params)
     if @order.save
-      redirect_to action: :index
+      redirect_to root_path
     else
-      render action: :new
+      render action: :index ,model:@order
     end
   end
 
