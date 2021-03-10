@@ -14,7 +14,7 @@
 ### Association
 
 - has_many :items
-- has_many :purchase_histories
+- has_many :order_histories
 
 
 
@@ -36,10 +36,10 @@
 ### Association
 
 - belongs_to :user
-- has_one :purchase_history
+- has_one :order_history
 
 
-## purchases テーブル
+## order テーブル
 | Column            | Type         | Options                        |
 | ----------------- | ------------ | ------------------------------ |
 | postal_code       | string       | null:false                     |
@@ -48,10 +48,10 @@
 | block_number      | string       | null:false                     |
 | building_name     | string       |                                |
 | phone             | string       | null:false                     |
-| purchase_history  | references   | null:false, foreign_key: true  |
+| order_history     | references   | null:false, foreign_key: true  |
 
 
-## purchase_histories テーブル
+## order_histories テーブル
 | Column               | Type         | Options                        |
 | -------------------- | ------------ | ------------------------------ |
 | user                 | references   | null:false, foreign_key: true  |
@@ -60,7 +60,7 @@
 
 ### Association
 
-- has_one :purchase
+- has_one :order
 - belongs_to :user
 - belongs_to :item
 
