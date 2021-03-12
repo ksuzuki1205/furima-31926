@@ -11,15 +11,16 @@ class OrdersController < ApplicationController
   def create
     @order_connection = OrderConnection.new(order_params)
     @item = Item.find(params[:item_id])
-    if @order_connection.save
+    if @order_connection.valid?
+      @order_connection.save
       redirect_to root_path
     else
-      render action: :new
+      render action: :index
     end
   end
 
   def order_params
-    params.require(:order_connection).permit(:postal_code, :region_id, :city, :block_number, :building_name, :phone).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:order_connection).permit(:postal_code, :region_id, :city, :block_number, :building_name, :phone).merge(user_id: current_user.id, item_id: params[:item_id] )
   end
 
 end

@@ -1,5 +1,3 @@
 class Order < ApplicationRecord
-  has_one :order
-  belongs_to :user
-  belongs_to :item
+  belongs_to :order_history
 end
