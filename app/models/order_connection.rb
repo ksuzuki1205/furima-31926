@@ -2,9 +2,13 @@ class OrderConnection
   include ActiveModel::Model
   attr_accessor :postal_code, :region_id, :city, :block_number, :building_name, :phone, :item_id, :user_id
 
-
-
-
+  with_options presence: true do
+    validates :postal_code
+    validates :region_id
+    validates :city
+    validates :block_number
+    validates :phone
+  end
 
   def save
       order_history = OrderHistory.create(item_id: item_id, user_id: user_id)
