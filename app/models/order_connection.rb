@@ -9,8 +9,6 @@ class OrderConnection
     validates :phone, format: { with: /\A\d{11}\z/, message: "is invalid. Input half-width number only" }
   end
 
-  # numericality: { with: /^0\d{11}$/, message: "is invalid. Input half-width number only"}
-
   with_options presence: true, numericality: { other_than: 1 } do
     validates :region_id
   end
