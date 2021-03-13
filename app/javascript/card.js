@@ -13,6 +13,14 @@ const pay = () => {
       exp_month: formData.get("order_connection[hoge]"),
       exp_year: `20${formData.get("order_connection[hoge]")}`,
     };
+
+    Payjp.createToken(card, (status, response) => {
+      if (status == 200) {
+        const token = response.id;
+        console.log(token)
+      }
+    });
+    
   });
 };
 
