@@ -7,6 +7,7 @@ class OrderConnection
     validates :city
     validates :block_number
     validates :phone, format: { with: /\A\d{11}\z/, message: "is invalid. Input half-width number only" }
+    validates :token
   end
 
   with_options presence: true, numericality: { other_than: 1 } do
