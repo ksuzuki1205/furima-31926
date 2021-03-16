@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :order_history do
-   user
-   item    
+   association :user
+   association :item    
   end
 end

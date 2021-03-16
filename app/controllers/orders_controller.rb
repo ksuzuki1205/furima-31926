@@ -1,8 +1,14 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @item = Item.find(params[:item_id])
     @order = Order.new
+    @order_history = OrderHistory.new
     @order_connection = OrderConnection.new
+    if @item.user_id == current_user.id || @order_history.present?
+      redirect_to root_path  
+    end     
   end
 
   def new
@@ -21,7 +27,6 @@ class OrdersController < ApplicationController
   end
 
   private
-
   def order_params
     params.require(:order_connection).permit(:postal_code, :region_id, :city, :block_number, :building_name, :phone).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token] )
   end

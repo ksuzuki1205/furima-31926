@@ -6,10 +6,10 @@ class OrderConnection
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)" }
     validates :city
     validates :block_number
-    validates :phone, format: { with: /\A\d{11}\z/, message: "is invalid. Input half-width number only" }
+    validates :phone, format: { with: /\A\d{11}\z/, message: "is invalid. Input half-width number only. Character limit is 11." }
     validates :token
   end
-
+ 
   with_options presence: true, numericality: { other_than: 1 } do
     validates :region_id
   end
