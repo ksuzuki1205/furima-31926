@@ -15,6 +15,12 @@ RSpec.describe OrderConnection, type: :model do
       end
     end
     context '商品購入ができない時' do
+      it '正しいクレジットカードの情報で無いときは決済できない' do
+        @order_connection.token = nil
+        @order_connection.valid?
+        expect(@order_connection.errors.full_messages).to include("Token can't be blank")
+      end
+
       it '郵便番号が空では登録できない' do
         @order_connection.postal_code = ''
         @order_connection.valid?
