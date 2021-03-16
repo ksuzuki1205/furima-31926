@@ -4,11 +4,12 @@ class OrdersController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
     @order = Order.new
-    @order_history = OrderHistory.new
     @order_connection = OrderConnection.new
-    if @item.user_id == current_user.id || @order_history.present?
+    if @item.user_id == current_user.id || @item.order_history.present?
       redirect_to root_path  
-    end     
+    else
+      render action: :index
+    end
   end
 
   def new
