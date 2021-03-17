@@ -3,16 +3,12 @@ class OrdersController < ApplicationController
   before_action :finding_item, only: [:index, :create]
 
   def index
-    @order = Order.new
     @order_connection = OrderConnection.new
     if @item.user_id == current_user.id || @item.order_history.present?
       redirect_to root_path  
     else
       render action: :index
     end
-  end
-
-  def new
   end
 
   def create
