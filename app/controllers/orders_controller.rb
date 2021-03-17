@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :finding_item, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @order = Order.new
     @order_connection = OrderConnection.new
     if @item.user_id == current_user.id || @item.order_history.present?
@@ -17,7 +17,6 @@ class OrdersController < ApplicationController
 
   def create
     @order_connection = OrderConnection.new(order_params)
-    @item = Item.find(params[:item_id])
     if @order_connection.valid?
       pay_item
       @order_connection.save
@@ -28,6 +27,11 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def finding_item
+   @item = Item.find(params[:item_id])
+  end
+
   def order_params
     params.require(:order_connection).permit(:postal_code, :region_id, :city, :block_number, :building_name, :phone).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token] )
   end
