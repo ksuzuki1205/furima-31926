@@ -13,7 +13,13 @@ RSpec.describe OrderConnection, type: :model do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@order_connection).to be_valid
       end
+      it '建物名が抜けていても登録できる' do
+        @order_connection.building_name = ''
+        @order_connection.valid?
+        expect(@order_connection.errors.full_messages).to include()
+      end
     end
+
     context '商品購入ができない時' do
       it '正しいクレジットカードの情報で無いときは決済できない' do
         @order_connection.token = nil
@@ -31,6 +37,12 @@ RSpec.describe OrderConnection, type: :model do
         @order_connection.region_id = ''
         @order_connection.valid?
         expect(@order_connection.errors.full_messages).to include("Region can't be blank", "Region is not a number")
+      end
+
+      it '都道府県が初期値（region_id = 1）では登録できない' do
+        @order_connection.region_id = 1
+        @order_connection.valid?
+        expect(@order_connection.errors.full_messages).to include("Region must be other than 1")
       end
 
       it '市区町村が空では登録できない' do
@@ -68,6 +80,26 @@ RSpec.describe OrderConnection, type: :model do
         @order_connection.valid?
         expect(@order_connection.errors.full_messages).to include("Phone is invalid. Input half-width number only. Character limit is 11.")
       end
+
+      it '電話番号は英数混合では登録できない' do
+        @order_connection.phone = '080abcd1234'
+        @order_connection.valid?
+        expect(@order_connection.errors.full_messages).to include("Phone is invalid. Input half-width number only. Character limit is 11.")
+      end
+
+      it 'user_idが空では登録できない' do
+        @order_connection.user_id = ''
+        @order_connection.valid?
+        expect(@order_connection.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idが空では登録できない' do
+        @order_connection.item_id = ''
+        @order_connection.valid?
+        expect(@order_connection.errors.full_messages).to include("Item can't be blank")
+      end
+
+
     end
   end
 end
