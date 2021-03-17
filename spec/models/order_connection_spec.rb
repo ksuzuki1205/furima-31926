@@ -9,7 +9,7 @@ RSpec.describe OrderConnection, type: :model do
   end
 
   describe '商品購入' do
-    context '商品購入ができない時' do
+    context '商品購入ができる時' do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@order_connection).to be_valid
       end
