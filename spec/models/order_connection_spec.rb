@@ -57,12 +57,6 @@ RSpec.describe OrderConnection, type: :model do
         expect(@order_connection.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
       end
 
-      it '郵便番号にはハイフンがないと登録できない' do
-        @order_connection.postal_code = '1234567'
-        @order_connection.valid?
-        expect(@order_connection.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
-      end
-
       it '電話番号は11桁以内でないと登録できない' do
         @order_connection.phone = '080123456789'
         @order_connection.valid?
