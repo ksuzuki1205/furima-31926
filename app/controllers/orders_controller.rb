@@ -1,14 +1,11 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :finding_item, only: [:index, :create]
+  before_action :confirmation, only: [:index, :create]
 
   def index
     @order_connection = OrderConnection.new
-    if @item.user_id == current_user.id || @item.order_history.present?
-      redirect_to root_path  
-    else
-      render action: :index
-    end
+    render action: :index
   end
 
   def create
@@ -23,6 +20,12 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def confirmation
+    if @item.user_id == current_user.id || @item.order_history.present?
+      redirect_to root_path  
+    end
+  end
 
   def finding_item
    @item = Item.find(params[:item_id])
