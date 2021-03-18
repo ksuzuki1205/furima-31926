@@ -3,9 +3,10 @@ require 'rails_helper'
 RSpec.describe OrderConnection, type: :model do
   
   before do
-    @user = FactoryBot.build(:user)
-    @item = FactoryBot.build(:item)
-    @order_connection = FactoryBot.build(:order_connection)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @order_connection = FactoryBot.build(:order_connection, user_id: @user.id, item_id: @item.id)
+    sleep(1)
   end
 
   describe '商品購入' do

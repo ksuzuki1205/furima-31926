@@ -7,7 +7,7 @@ FactoryBot.define do
     building_name          { 'うううううううう'}
     phone                  { '08012345678' }
     token                  { 'tok_AAAAAAAAAAAAAAAAAAA' }
-    user_id                { Random.rand(1..9_999_999_999_999) }
-    item_id                { Random.rand(1..9_999_999_999_999) }
+    # user_id                { Random.rand(1..9_999_999_999_999) }
+    # item_id                { Random.rand(1..9_999_999_999_999) }
   end
 end
