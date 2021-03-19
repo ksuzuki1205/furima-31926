@@ -10,8 +10,6 @@ class ItemsController < ApplicationController
 
 
   def show
-    # @order = Comment.new
-    # @orders = @item.orders.includes(:user)
   end
 
   def new
