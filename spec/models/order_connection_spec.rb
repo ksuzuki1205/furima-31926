@@ -31,7 +31,7 @@ RSpec.describe OrderConnection, type: :model do
       it '郵便番号が空では登録できない' do
         @order_connection.postal_code = ''
         @order_connection.valid?
-        expect(@order_connection.errors.full_messages).to include("Postal code can't be blank", "Postal code is invalid. Include hyphen(-)")
+        expect(@order_connection.errors.full_messages).to include("Postal code can't be blank")
       end
 
       it '都道府県が空では登録できない' do

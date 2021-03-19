@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
 
   def index
     @order_connection = OrderConnection.new
-    render action: :index
   end
 
   def create
