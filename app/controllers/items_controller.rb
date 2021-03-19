@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:edit, :show, :update, :destroy]
-  before_action :user_confirmation, only: [:edit, :update, :destroy]
-  
+  before_action :user_item_confirmation, only: [:edit, :update, :destroy]
+ 
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -52,8 +52,8 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def user_confirmation
-    unless @item.user_id == current_user.id
+  def user_item_confirmation
+    if @item.user_id != current_user.id || @item.order_history.present?
       redirect_to action: :index  
     end      
   end
