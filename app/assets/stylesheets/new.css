@@ -117,7 +117,7 @@
   justify-content: space-between;
   padding: 2vh 0;
 }
-
+  
 .items-detail>.form {
   width: 300px;
   padding: 2vh 0;
@@ -127,6 +127,11 @@
   margin: 2vh 0;
 }
 
+/* img {
+  height: 200px;
+  width: 200px;
+  object-fit: contain;
+} */
 /* /商品の詳細など */
 
 /* 販売価格 */
