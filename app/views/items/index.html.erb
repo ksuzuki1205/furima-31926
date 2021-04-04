@@ -125,7 +125,9 @@
                       <span>Sold Out!!</span>
                     </div> 
                   <% end %>
-                <%= link_to image_tag(item.image, class: "item-img"), item_path(item.id)%>
+                  <% item.images.each do |image| %>
+                    <%= link_to image_tag(image, class: "item-img"), item_path(item.id)%>
+                  <% end %>
               </div>
               <div class='item-info'>
                 <h3 class='item-name'>

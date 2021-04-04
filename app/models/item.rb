@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_charge
   belongs_to :region
   belongs_to :delivery_schedule
-  has_one_attached :image
+  has_many_attached :images
   has_one :order_history
 
   # 空の投稿を保存できないようにする
@@ -14,7 +14,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :title
     validates :explanation
-    validates :image
+    validates :images
   end
 
   with_options presence: true,
