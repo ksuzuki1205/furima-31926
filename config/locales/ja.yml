@@ -4,15 +4,17 @@ ja:
      user:
        nickname: ニックネーム
        birthday: 生年月日
-       first name: 名前
-       last name: 苗字
+       first_name_kana: 名前（カナ）
+       last_name_kana: 苗字（カナ）
+       first_name: 名前
+       last_name: 苗字
      item:
        title: タイトル
        explanation: 商品の説明
        images: 画像
        price: 価格
-       category: カテゴリー
-       condition: 商品の状態
-       shipping charge: 発送料の負担
-       region: 発送元の地域
-       delivery schedule: 発送までの日数
+       category_id: カテゴリー
+       condition_id: 商品の状態
+       shipping_charge_id: 発送料の負担
+       region_id: 発送元の地域
+       delivery_schedule_id: 発送までの日数
