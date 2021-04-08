@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  get 'cards/new'
-  get 'users/show'
+  # get 'cards/new'
+  # get 'users/show'
   devise_for :users
-  resources :users, only: [:show, :edit, :update]
-  resources :cards, only: [:new, :create]
+  resources :users do
+    resources :cards, only: [:new, :create]
+  end
   root to: 'items#index'
   resources :items do
     resources :orders, only: [:index, :create]

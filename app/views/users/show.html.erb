@@ -4,6 +4,7 @@
   </div><br>
   <div class="Account__info">
     <h2>ユーザー情報</h2>
+    <li><%= link_to 'カード情報登録', new_user_card_path(current_user.id) ,class: "tocard"%></li>
   </div>
   <div class="AccountPage__form">
     <%= form_for(current_user) do |f| %>
