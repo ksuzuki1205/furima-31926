@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # get 'users/show'
   devise_for :users
   resources :users do
-    resources :cards, only: [:new, :create]
+    resources :cards
   end
   root to: 'items#index'
   resources :items do
