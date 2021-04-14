@@ -110,7 +110,6 @@
       </li>
     </ul>
   </div>
- 
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
     <%= link_to '新規投稿商品', "#", class: "subtitle" %>
@@ -134,7 +133,15 @@
                   <%= "#{item.title}" %>
                 </h3>
                 <div class='item-price'>
-                  <span><%= "#{item.price}" %>円<br><%= "#{item.shipping_charge.name}" %></span>
+                  <span><%= "#{item.price}" %>円<br>
+                  <%= "#{item.shipping_charge.name}" %><br>
+                  <%= "#{item.category.name}" %><br>
+                  <%= "#{item.condition.name}" %><br>
+                  <%= "#{item.region.name}" %><br>
+                  <%= "#{item.delivery_schedule.name}" %><br>
+                  <%= "出品者：#{item.user.nickname}" %><br>
+                  <%= "生産地：#{item.group.name}" %><br>
+                  </span>
                   <div class='star-btn'>
                     <%= image_tag "star.png", class:"star-icon" %>
                     <span class='star-count'>0</span>
@@ -169,4 +176,61 @@
   <span class='purchase-btn-text'>出品する</span>
   <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
 <% end %>
+
+<h1>
+  商品検索
+</h1>
+<%= search_form_for @p, url: items_search_path do |f| %>
+  <%= f.label :category_id_eq, '商品名' %>
+  <%= f.collection_select :category_id_eq, Category.all, :id, :name, include_blank: '指定なし' %>
+
+  <%= f.label :condition_id_eq, '商品の状態：' %>
+  <%= f.collection_select :condition_id_eq, Condition.all, :id, :name, include_blank: '指定なし'%>
+
+  <%= f.label :shipping_charge_id_eq, '発送料の負担：' %>
+  <%= f.collection_select :shipping_charge_id_eq, ShippingCharge.all, :id, :name, include_blank: '指定なし'%>
+
+  <%= f.label :region_id_eq, '発送元の地域：' %>
+  <%= f.collection_select :region_id_eq, Region.all, :id, :name, include_blank: '指定なし'%>
+
+  <%= f.label :delivery_schedule_id_eq, '発送までの日数：' %>
+  <%= f.collection_select :delivery_schedule_id_eq, DeliverySchedule.all, :id, :name, include_blank: '指定なし'%>
+
+  <%= f.label :group_name_eq, '生産地：' %>
+  <%= f.collection_select :group_name_eq, @group_name, :name, :name, include_blank: '指定なし' %>
+  <br>
+
+  <%= f.label :price, '価格：' %>
+  <%= f.radio_button :price_lteq, '' %>
+  指定なし
+  <%= f.radio_button :price_lteq, '100000' %>
+  10万円以下
+  <%= f.radio_button :price_lteq, '1000000' %>
+  100万円以下
+  <%= f.radio_button :price_lteq, '999999999' %>
+  1000万円未満
+  <br>
+    <br>
+  <br>
+  
+  <%= f.submit '検索' %>
+  <br>
+  <%# 商品一覧 %>
+  <% @items.each do |item| %>
+  <td>
+  <br>
+  <li>
+    <%= "#{item.shipping_charge.name}" %><br>
+    <%= "#{item.category.name}" %><br>
+    <%= "#{item.condition.name}" %><br>
+    <%= "#{item.region.name}" %><br>
+    <%= "#{item.delivery_schedule.name}" %><br>
+    <%= "出品者：#{item.user.nickname}" %><br>
+    <%= "生産地：#{item.group.name}" %><br>
+    <%= "価格：#{item.price}円" %><br>
+  </li>
+  <% end %>
+<% end %>
+
+
 <%= render "shared/footer" %>

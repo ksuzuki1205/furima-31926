@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # get 'cards/new'
   # get 'users/show'
+  get 'items/search'
   devise_for :users
   resources :users do
     resources :cards

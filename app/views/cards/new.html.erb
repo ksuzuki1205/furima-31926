@@ -1,22 +1,22 @@
-<%= form_with  url: user_cards_url(current_user.id), id: 'charge-form', class: 'card-form',local: true do |f| %>
+<%= form_with  url: user_cards_path(current_user.id), id: 'charge-form', class: 'card-form',local: true do |f| %>
   <div class="Cardpage">
     <h1>カード登録</h1>
   </div><br>
   <div class='form-wrap'>
-    <%= f.label :number, "【カード番号】" %>
-    <%= f.text_field :number, class:"number", placeholder:"カード番号(半角英数字)", maxlength:"16" %>
+    <%= f.label :"card-number", "【カード番号】" %>
+    <%= f.text_field :"card-number", class:"number", placeholder:"カード番号(半角英数字)", maxlength:"16" %>
   </div>
   <div class='form-wrap'>
-    <%= f.label :cvc ,"【ＣＶＣ】" %>
-    <%= f.text_field :cvc, class:"cvc", placeholder:"カード背面にある3桁の番号", maxlength:"4" %>
+    <%= f.label :"card-cvc" ,"【ＣＶＣ】" %>
+    <%= f.text_field :"card-cvc", class:"cvc", placeholder:"カード背面にある3桁の番号", maxlength:"4" %>
   </div>
   <div class='form-wrap'>
   <br>
     <p>【有効期限】</p>
     <div class='input-expiration-date-wrap'>
-      <%= f.select :exp_month, 1..12, {include_blank: "---"}, class: "exp_month" %>
+      <%= f.select :"card-exp-month", 1..12, {include_blank: "---"}, class: "exp_month" %>
       <p>月</p>
-      <%= f.select :exp_year, 20..25, {include_blank: "---"}, class: "exp_year" %>
+      <%= f.select :"card-exp-year", 20..25, {include_blank: "---"}, class: "exp_year" %>
       <p>年</p>
     </div>
   </div>

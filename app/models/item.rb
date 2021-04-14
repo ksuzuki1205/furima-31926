@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   belongs_to :delivery_schedule
   has_many_attached :images
   has_one :order_history
+  belongs_to :group
 
   # 空の投稿を保存できないようにする
 

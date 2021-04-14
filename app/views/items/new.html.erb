@@ -23,7 +23,7 @@
         <%= f.file_field :images, name: 'item[images][]', id: 'item-image' %>
         <div id="image-list">
             <% @item.images.each do |image| %>
-              <%= image_tag(@item.image, class: "item-img") %>
+              <%= image_tag(@item.images[0], class: "item-img") %>
             <% end %>
         </div>
 
@@ -66,6 +66,11 @@
           <span class="indispensable">必須</span>
         </div>
         <%= f.collection_select(:condition_id, Condition.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %>
+        <div class="weight-bold-text">
+          生産地
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:group_id, Group.all, :id, :name, {}, {class:"select-box", id:"item-group"}) %>
       </div>
     </div>
     <%# /商品の詳細 %>
