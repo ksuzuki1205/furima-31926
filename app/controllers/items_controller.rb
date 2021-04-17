@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
 
 
   def index
-    @items = Item.includes(:user).order('created_at DESC')
+    @items_tag = Item.includes(:user).order('created_at DESC')
     set_item_column
     set_group_column
   end
@@ -19,23 +19,21 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @items_tag = ItemsTag.new
   end
 
   def create
-    @item = Item.new(item_params)
-    if @item.save
+    @items_tag = ItemsTag.new(item_params)
+    if @items_tag.valid?
+      @items_tag.save
       redirect_to root_path
     else
       render :new
     end
   end
-  
-  def edit
-  end
 
   def update
-    if @item.update(item_params)
+    if @items_tag.update(item_params)
       render :show
     else
       render :edit
@@ -43,12 +41,18 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy
+    @items_tag.destroy
     redirect_to root_path
   end
 
-  private
+  def search
+    return nil if params[:keyword] == ""
+    tag = Tag.where(['name LIKE ?', "%#{params[:keyword]}%"] )
+    render json:{ keyword: tag }
+  end
 
+
+  private
 
   def set_item_column
     @item_title = Item.select("title").distinct
@@ -63,16 +67,16 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:title, :explanation, :category_id, :condition_id, :shipping_charge_id, :region_id, :price,
-                                 :delivery_schedule_id, :group_id,  images: []).merge(user_id: current_user.id)
+    params.require(:items_tag).permit(:title, :explanation, :category_id, :condition_id, :shipping_charge_id, :region_id, :price,
+                                 :delivery_schedule_id, :group_id,  :message, :name,  images: []).merge(user_id: current_user.id)
   end
 
   def set_item
-    @item = Item.find(params[:id])
+    @items_tag = Item.find(params[:id])
   end
 
   def user_item_confirmation
-    if @item.user_id != current_user.id || @item.order_history.present?
+    if @items_tag.user_id != current_user.id || @items_tag.order_history.present?
       redirect_to action: :index  
     end      
   end

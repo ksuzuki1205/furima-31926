@@ -9,27 +9,10 @@ class Item < ApplicationRecord
   has_many_attached :images
   has_one :order_history
   belongs_to :group
+  has_many :item_tag_relations
+  has_many :tags, through: :item_tag_relations
 
   # 空の投稿を保存できないようにする
 
-  with_options presence: true do
-    validates :title
-    validates :explanation
-    validates :images
-  end
 
-  with_options presence: true,
-               numericality: { with: /\A[0-9]+\z/, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999,
-                               message: 'は¥300~¥9,999,999の範囲で半角数字を使用してください' } do
-    validates :price
-  end
-
-  # ジャンルの選択が「--」の時は保存できないようにする
-  with_options presence: true, numericality: { other_than: 1 } do
-    validates :category_id
-    validates :condition_id
-    validates :shipping_charge_id
-    validates :region_id
-    validates :delivery_schedule_id
-  end
 end

@@ -114,8 +114,8 @@
     <h2 class='title'>ピックアップカテゴリー</h2>
     <%= link_to '新規投稿商品', "#", class: "subtitle" %>
     <ul class='item-lists'>
-      <% if  @items.present? %>
-        <% @items.each do |item| %>
+      <% if  @items_tag.present? %>
+        <% @items_tag.each do |item| %>
           <li class='list'>        
               <div class='item-img-content'>
                   <% if item.order_history != nil %> 
@@ -216,7 +216,7 @@
   <%= f.submit '検索' %>
   <br>
   <%# 商品一覧 %>
-  <% @items.each do |item| %>
+  <% @items_tag.each do |item| %>
   <td>
   <br>
   <li>
@@ -225,12 +225,16 @@
     <%= "#{item.condition.name}" %><br>
     <%= "#{item.region.name}" %><br>
     <%= "#{item.delivery_schedule.name}" %><br>
+    <%= "メッセージ：#{item.message}" %><br>
+      <%item.tags.each do |tag| %>
+          <%= "タグ：##{tag.name}" %>
+      <%end%>
+    <br>
     <%= "出品者：#{item.user.nickname}" %><br>
     <%= "生産地：#{item.group.name}" %><br>
     <%= "価格：#{item.price}円" %><br>
   </li>
   <% end %>
 <% end %>
-
 
 <%= render "shared/footer" %>

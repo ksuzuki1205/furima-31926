@@ -10,6 +10,7 @@ require("channels")
 require("../fee")
 require("../card")
 require('../preview') 
+require("../tag")
 
 
 
