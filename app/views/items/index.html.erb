@@ -215,6 +215,7 @@
   
   <%= f.submit '検索' %>
   <br>
+  <% end %>
   <%# 商品一覧 %>
   <% @items_tag.each do |item| %>
   <td>
@@ -235,6 +236,6 @@
     <%= "価格：#{item.price}円" %><br>
   </li>
   <% end %>
-<% end %>
-
+<%# end %>
+<% breadcrumb :root %>
 <%= render "shared/footer" %>

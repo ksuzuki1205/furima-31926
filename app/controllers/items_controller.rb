@@ -13,9 +13,12 @@ class ItemsController < ApplicationController
 
   def search
     @results = @p.result.includes(:group)  # 検索条件にマッチした商品の情報を取得
+    # @results = @p.result  # 検索条件にマッチした商品の情報を取得
   end
 
   def show
+    @comment = Comment.new
+    @comments = @items_tag.comments.includes(:user)
   end
 
   def new
@@ -46,6 +49,7 @@ class ItemsController < ApplicationController
   end
 
   def search
+    binding.pry
     return nil if params[:keyword] == ""
     tag = Tag.where(['name LIKE ?', "%#{params[:keyword]}%"] )
     render json:{ keyword: tag }

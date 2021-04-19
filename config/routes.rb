@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  # get 'comments/new'
   # get 'cards/new'
   # get 'users/show'
+  get 'groups/index'
   get 'items/search'
   devise_for :users
   resources :users do
@@ -9,6 +11,8 @@ Rails.application.routes.draw do
   root to: 'items#index'
   resources :items do
     resources :orders, only: [:index, :create]
+    resources :messages
+    resources :comments
     collection do
       get 'search'
     end

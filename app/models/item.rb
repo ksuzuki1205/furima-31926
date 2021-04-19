@@ -11,6 +11,8 @@ class Item < ApplicationRecord
   belongs_to :group
   has_many :item_tag_relations
   has_many :tags, through: :item_tag_relations
+  has_many :comments  # commentsテーブルとのアソシエーション
+
 
   # 空の投稿を保存できないようにする
 

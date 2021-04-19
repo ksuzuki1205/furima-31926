@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :card, dependent: :destroy
+  has_many :comments  # commentsテーブルとのアソシエーション
 
   with_options presence: true do
     validates :nickname
