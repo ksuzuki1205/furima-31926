@@ -180,7 +180,7 @@
 <h1>
   商品検索
 </h1>
-<%= search_form_for @p, url: items_search_path do |f| %>
+<%= search_form_for @p, url: items_search_rk_path do |f| %>
   <%= f.label :category_id_eq, '商品名' %>
   <%= f.collection_select :category_id_eq, Category.all, :id, :name, include_blank: '指定なし' %>
 

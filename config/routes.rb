@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # get 'cards/new'
   # get 'users/show'
   get 'groups/index'
-  get 'items/search'
+  get 'items/search_rk'
   devise_for :users
   resources :users do
     resources :cards

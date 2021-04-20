@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:edit, :show, :update, :destroy]
   before_action :user_item_confirmation, only: [:edit, :update, :destroy]
-  before_action :search_item, only: [:index, :search]
+  before_action :search_item, only: [:index, :search_rk]
 
 
   def index
@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
     set_group_column
   end
 
-  def search
+  def search_rk
     @results = @p.result.includes(:group)  # 検索条件にマッチした商品の情報を取得
     # @results = @p.result  # 検索条件にマッチした商品の情報を取得
   end
@@ -49,7 +49,6 @@ class ItemsController < ApplicationController
   end
 
   def search
-    binding.pry
     return nil if params[:keyword] == ""
     tag = Tag.where(['name LIKE ?', "%#{params[:keyword]}%"] )
     render json:{ keyword: tag }
