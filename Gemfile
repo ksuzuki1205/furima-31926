@@ -68,3 +68,4 @@ gem 'payjp'
 gem 'rails-i18n'
 gem 'ransack'
 gem "gretel"
+gem "aws-sdk-s3", require: false
